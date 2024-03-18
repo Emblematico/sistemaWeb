@@ -1,0 +1,37 @@
+<div class="container mt-5">
+    <h2 class="mb-4">Lista de Clientes</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nome</th>
+                <th scope="col">CEP</th>
+                <th scope="col">Endereço</th>
+                <th scope="col">Bairro</th>
+                <th scope="col">Cidade</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Observações</th>
+                <th scope="col">Criado em</th>
+                <th scope="col">Atualizado em</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each clientes}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{nome}}</td>
+                <td>{{cep}}</td>
+                <td>{{endereco}}</td>
+                <td>{{bairro}}</td>
+                <td>{{cidade}}</td>
+                <td>{{estado}}</td>
+                <td>{{observacoes}}</td>
+                <td>{{createdAt}}</td>
+                <td>{{updatedAt}}</td>
+                <td></td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

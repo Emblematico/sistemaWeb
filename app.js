@@ -1,10 +1,15 @@
 const express = require('express')
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
+const path = require('path');
 const app = express()
 const handlebars = require('express-handlebars').engine
 app.engine('handlebars', handlebars({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
+app.engine('handlebars', handlebars({
+    defaultLayout: 'main',
+    partialsDir: path.join(__dirname, 'views', 'components')
+}));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const connection = mysql.createConnection({
@@ -41,6 +46,17 @@ app.post('/cadastrar-cliente', (req, res) => {
 
         console.log('Cliente cadastrado com sucesso!');
         res.status(200).send('Cliente cadastrado com sucesso');
+    });
+});
+
+app.get('/listar', (req, res) => {
+    connection.query('SELECT * FROM clientes', (err, rows) => {
+        if (err) {
+            console.error('Erro ao listar clientes:', err);
+            res.status(500).send('Erro ao listar clientes');
+            return;
+        }
+        res.render('listar', { clientes: rows });
     });
 });
 
