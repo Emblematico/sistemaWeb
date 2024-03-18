@@ -49,6 +49,7 @@ app.post('/cadastrar-cliente', (req, res) => {
     });
 });
 
+// Rota para listar clientes
 app.get('/listar', (req, res) => {
     connection.query('SELECT * FROM clientes', (err, rows) => {
         if (err) {
@@ -57,6 +58,40 @@ app.get('/listar', (req, res) => {
             return;
         }
         res.render('listar', { clientes: rows });
+    });
+});
+
+// Rota para renderizar a página de edição de cliente
+app.post('/atualizar/:id', (req, res) => {
+    const clienteId = req.params.id;
+    const { nome, cep, endereco, bairro, cidade, estado, observacoes } = req.body;
+
+    const sql = "UPDATE clientes SET nome = ?, cep = ?, endereco = ?, bairro = ?, cidade = ?, estado = ?, observacoes = ? WHERE id = ?";
+    const values = [nome, cep, endereco, bairro, cidade, estado, observacoes, clienteId];
+
+    connection.query(sql, values, (err, result) => {
+        if (err) {
+            console.error('Erro ao atualizar cliente:', err);
+            res.status(500).send('Erro ao atualizar cliente');
+            return;
+        }
+
+        console.log('Cliente atualizado com sucesso!');
+        res.redirect('/listar');
+    });
+});
+
+// Rota para excluir cliente
+app.post('/excluir/:id', (req, res) => {
+    const clienteId = req.params.id;
+    connection.query('DELETE FROM clientes WHERE id = ?', clienteId, (err, result) => {
+        if (err) {
+            console.error('Erro ao excluir cliente:', err);
+            res.status(500).send('Erro ao excluir cliente');
+            return;
+        }
+        console.log('Cliente excluído com sucesso!');
+        res.redirect('/listar');
     });
 });
 

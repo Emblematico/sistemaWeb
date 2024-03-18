@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="card mt-5">
+        <div class="card-body">
+            <h5 class="card-title fw-bold">Editar Cliente</h5>
+            <form class="row g-3" action="/atualizar/{{cliente.id}}" method="POST">
+                <div class="col-md-5">
+                    <label class="form-label" for="nome">Nome</label>
+                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome"
+                        value="{{cliente.nome}}">
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label" for="cep">CEP</label>
+                    <input type="text" class="form-control" id="cep" name="cep" placeholder="Digite seu CEP"
+                        value="{{cliente.cep}}">
+                </div>
+                <div class="col-5">
+                    <label class="form-label" for="endereco">Endereço</label>
+                    <input type="text" class="form-control" id="endereco" name="endereco"
+                        placeholder="Digite seu endereço" value="{{cliente.endereco}}">
+                </div>
+                <div class="col-4">
+                    <label class="form-label" for="bairro">Bairro</label>
+                    <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Digite seu bairro"
+                        value="{{cliente.bairro}}">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label" for="cidade">Cidade</label>
+                    <input type="text" class="form-control" id="cidade" name="cidade" placeholder="Digite sua cidade"
+                        value="{{cliente.cidade}}">
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label" for="estado">Estado</label>
+                    <input type="text" class="form-control" id="estado" name="estado" placeholder="Digite seu estado"
+                        value="{{cliente.estado}}">
+                </div>
+                <div class="col-md-12">
+                    <label class="form-label" for="observacoes">Observações</label>
+                    <textarea class="form-control" id="observacoes" name="observacoes" rows="3"
+                        placeholder="Adicione quaisquer observações adicionais aqui">{{cliente.observacoes}}</textarea>
+                </div>
+                <div class="col-12 d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -29,7 +29,11 @@
                 <td>{{observacoes}}</td>
                 <td>{{createdAt}}</td>
                 <td>{{updatedAt}}</td>
-                <td></td>
+                <td> <a href="/editar/{{id}}" class="btn btn-primary btn-sm">Editar</a>
+                    <form action="/excluir/{{id}}" method="POST" style="display: inline;">
+                        <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                    </form>
+                </td>
             </tr>
             {{/each}}
         </tbody>
