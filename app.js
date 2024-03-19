@@ -6,10 +6,13 @@ const app = express()
 const handlebars = require('express-handlebars').engine
 app.engine('handlebars', handlebars({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
+// Visualização de arquivos estáticos
 app.engine('handlebars', handlebars({
     defaultLayout: 'main',
     partialsDir: path.join(__dirname, 'views', 'components')
 }));
+// Configurar o middleware para servir arquivos estáticos
+app.use('/js', express.static(path.join(__dirname, 'public', 'js')));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const connection = mysql.createConnection({
@@ -82,7 +85,7 @@ app.post('/atualizar/:id', (req, res) => {
 });
 
 // Rota para excluir cliente
-app.post('/excluir/:id', (req, res) => {
+app.get('/excluir/:id', (req, res) => {
     const clienteId = req.params.id;
     connection.query('DELETE FROM clientes WHERE id = ?', clienteId, (err, result) => {
         if (err) {

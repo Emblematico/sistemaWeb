@@ -1,41 +1,46 @@
 <div class="container mt-5">
     <h2 class="mb-4">Lista de Clientes</h2>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Nome</th>
-                <th scope="col">CEP</th>
-                <th scope="col">Endereço</th>
-                <th scope="col">Bairro</th>
-                <th scope="col">Cidade</th>
-                <th scope="col">Estado</th>
-                <th scope="col">Observações</th>
-                <th scope="col">Criado em</th>
-                <th scope="col">Atualizado em</th>
-                <th scope="col">Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each clientes}}
-            <tr>
-                <td>{{id}}</td>
-                <td>{{nome}}</td>
-                <td>{{cep}}</td>
-                <td>{{endereco}}</td>
-                <td>{{bairro}}</td>
-                <td>{{cidade}}</td>
-                <td>{{estado}}</td>
-                <td>{{observacoes}}</td>
-                <td>{{createdAt}}</td>
-                <td>{{updatedAt}}</td>
-                <td> <a href="/editar/{{id}}" class="btn btn-primary btn-sm">Editar</a>
-                    <form action="/excluir/{{id}}" method="POST" style="display: inline;">
-                        <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
-                    </form>
-                </td>
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">CEP</th>
+                    <th scope="col">Endereço</th>
+                    <th scope="col">Bairro</th>
+                    <th scope="col">Cidade</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Observações</th>
+                    {{!-- <th scope="col">Criado em</th>
+                    <th scope="col">Atualizado em</th> --}}
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each clientes}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td>{{nome}}</td>
+                    <td>{{cep}}</td>
+                    <td>{{endereco}}</td>
+                    <td>{{bairro}}</td>
+                    <td>{{cidade}}</td>
+                    <td>{{estado}}</td>
+                    <td>{{observacoes}}</td>
+                    {{!-- <td>{{createdAt}}</td>
+                    <td>{{updatedAt}}</td> --}}
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Ações">
+                            <a href="/editar/{{id}}" class="btn btn-primary btn-sm">Editar</a>
+                            <a href="/excluir/{{id}}" class="btn btn-danger btn-sm"
+                                onclick="return confirm('Tem certeza que deseja excluir este cliente?')">Excluir</a>
+                        </div>
+                    </td>
+
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
 </div>
